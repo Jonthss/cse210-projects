@@ -1,8 +1,3 @@
-using System;
-using System.Runtime.ConstrainedExecution;
-using System.Collections.Generic;
-using Microsoft.Win32.SafeHandles;
-
 class Program
 {
     static void Main()
@@ -47,7 +42,9 @@ class Program
                     Environment.Exit(0);
                     break;
                 default:
+                    Console.ForegroundColor = ConsoleColor.Red; 
                     Console.WriteLine("Invalid choice. Please enter a valid option.");
+                    Console.ResetColor(); 
                     break;
             }
         }
@@ -57,17 +54,25 @@ class Program
     {
         string prompt = promptGenerator.GetRandomPrompt();
 
+        Console.ForegroundColor = ConsoleColor.Cyan; 
         Console.WriteLine($"Prompt: {prompt}");
+        Console.ResetColor(); 
+
         Console.Write("Your entry: ");
         string entryText = Console.ReadLine();
 
         journal.AddEntry(new Entry { _date = DateTime.Now.ToString(), _promptText = prompt, _entryText = entryText });
+
+        Console.ForegroundColor = ConsoleColor.Green; 
         Console.WriteLine("Entry added successfully.");
+        Console.ResetColor(); 
     }
 
     static void DisplayJournal(Journal journal)
     {
+        Console.ForegroundColor = ConsoleColor.Yellow; 
         journal.DisplayAll();
+        Console.ResetColor(); 
     }
 
     static void SaveJournal(Journal journal)
@@ -76,7 +81,10 @@ class Program
         string filename = Console.ReadLine();
 
         journal.SaveToFile(filename);
+
+        Console.ForegroundColor = ConsoleColor.Green; 
         Console.WriteLine("Journal saved successfully.");
+        Console.ResetColor(); 
     }
 
     static void LoadJournal(Journal journal)
