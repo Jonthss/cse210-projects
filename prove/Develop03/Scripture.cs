@@ -20,6 +20,24 @@ namespace DailyScripture
             }
         }
 
+        public List<Word> GetWords()
+        {
+            List<Word> copyWords = new List<Word>();
+            foreach (Word word in _words)
+            {
+                copyWords.Add(new Word(word.GetText()));
+            }
+            return copyWords;
+        }
+
+        public void RestoreWords(List<Word> words)
+        {
+            for (int i = 0; i < words.Count; i++)
+            {
+                _words[i].Restore(words[i]);
+            }
+        }
+
         public void Display()
         {
             Console.WriteLine($"{_reference}:");

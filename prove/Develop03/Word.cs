@@ -13,6 +13,11 @@ namespace DailyScripture
             _isHidden = false;
         }
 
+        public void Restore(Word word)
+        {
+            _isHidden = word.IsHidden();
+        }
+
         public void Hide()
         {
             _isHidden = true;
